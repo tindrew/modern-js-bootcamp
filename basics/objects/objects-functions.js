@@ -23,3 +23,20 @@ let bookSummary = getSummary(myBook)
 let otherBookSummary = getSummary(otherBook)
 console.log(bookSummary.pageCountSummary)
 console.log(otherBookSummary.summary)
+
+
+
+//create a function that returns an object
+
+// pass in fahrenheit and convert it to both celsius and kelvin
+
+let convertFahrenheit = function (fahrenheit) {                                 
+    return {
+        fahrenheit: 89,
+        kelvin: (fahrenheit - 32) * 5/9 + 273.15,
+        celsius:(fahrenheit - 32) * 5/9
+    }
+}
+
+let temp = convertFahrenheit(100)
+console.log(temp)
