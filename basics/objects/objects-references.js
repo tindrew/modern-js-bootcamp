@@ -30,7 +30,8 @@ addExpense(myAccount, 200)
 console.log(myAccount)
 addIncome(myAccount, 1000)
 console.log(myAccount)
-
-getAccountSummary(myAccount)
+console.log(getAccountSummary(myAccount))
+resetAccount(myAccount)
+console.log(getAccountSummary(myAccount))
 
 
