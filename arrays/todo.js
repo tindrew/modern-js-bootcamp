@@ -4,12 +4,9 @@ todos.splice(2, 1)
 todos.push('a new note for the end?')
 todos.shift()
 
-for (let count = 0; count < todos.length - 1; count ++) {
-    console.log(`${ count + 1 } ${ todos[count] }`)
-}
+console.log(`You have ${todos.legth} todos!`)
 
-for (let count = 0; count < todos.length; count++) {
-    const num = count + 1
-    const todo = todos[count]
-    console.log(`${ num }: ${ todo }`)
-}
+todos.forEach(function (todo, index) {
+    const num = index + 1
+    console.log(`${num}, ${todo}`)
+})
