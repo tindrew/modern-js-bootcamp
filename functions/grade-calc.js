@@ -3,9 +3,9 @@
 // A 90-100 b 80 - 89  C 70 - 79  D 60 - 69 
 // pass in score and total possible score
 
-let gradeCalc = function (studentScore, possibleScore) {
+const gradeCalc = function (studentScore, possibleScore) {
 
-    let studentGrade = studentScore * 100 / possibleScore 
+    const studentGrade = studentScore * 100 / possibleScore 
     let letterGrade = ''
     // this gives the percentage
     if (studentGrade >= 90 ) {
