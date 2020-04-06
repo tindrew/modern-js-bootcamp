@@ -8,5 +8,5 @@ console.log(`You have ${todos.legth} todos!`)
 
 todos.forEach(function (todo, index) {
     const num = index + 1
-    console.log(`${num}, ${todo}`)
+    console.log(`${num}. ${todo}`)
 })
