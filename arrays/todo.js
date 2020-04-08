@@ -1,22 +1,33 @@
 const todos = [ {
     text: 'buy food',
-    completed: false
+    completed: true
 }, {
     text: 'feed the cat',
-    completed: true
+    completed: false
 }, {
     text: 'some stuff',
-    completed: false
-}, {
-    text: 'walk the dog',
     completed: true
 }, {
-    text: 'Exercise',
+    text: 'walk the dog',
     completed: false
+}, {
+    text: 'Exercise',
+    completed: true
 }]
 
-// convert array to array of objects
-//two properties: Text, and completed
+const sortTodos = function (todos) {
+    todos.sort(function (a, b){
+        
+        if (!a.completed && b.completed) {
+            return -1;
+        } else if (!b.completed && a.completed) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })
+}
+
 
 //create a function that works with the array of objects
 // make it allow to remove todo based on text value
