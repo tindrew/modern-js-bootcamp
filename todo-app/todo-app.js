@@ -32,8 +32,12 @@ summary.textContent = `You have ${incompleteTodos.length} todos left`
 document.querySelector('body').appendChild(summary)
 
 // listen for new todo creation
-document.querySelector('button').addEventListener( 'click', function(e) {
+document.querySelector('#add-todo').addEventListener( 'click', function(e) {
     e.target.textContent = 'I\'ve been clicked!'
+})
+
+document.querySelector('#add-todos').addEventListener('input', function(e) {
+    console.log(e.target.value)
 })
     
 
