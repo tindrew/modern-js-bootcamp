@@ -20,6 +20,7 @@ const sortTodos = function (todos) {
         
         if (!a.completed && b.completed) {
             return -1;
+        
         } else if (!b.completed && a.completed) {
             return 1;
         } else {

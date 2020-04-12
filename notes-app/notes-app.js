@@ -1,9 +1,14 @@
-// const p = document.querySelector('p');
-// p.remove()
+const notes = [{
+    title: 'My next trip',
+    body: 'I would like to go to spain'
+}, {
+    title: 'Habits to work on',
+    body: 'Exercise, eating a bit better.'
+}, {
+    title: 'Office modifications',
+    body: 'Get a new seat'
+}]
 
-const ps = document.querySelectorAll('p')
-
-ps.forEach(function (p) {
-    // console.log(p.textContent)
-    p.textContent = '*****'
+document.querySelector('button').addEventListener('click', function (e) {
+    e.target.textContent = 'The button was clicked'
 })
