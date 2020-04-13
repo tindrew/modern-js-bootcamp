@@ -15,33 +15,52 @@ const todos = [ {
     completed: true
 }]
 
+// Filter todos functionality
+const filters = {
+    filteredText: ''
+}
 
-const incompleteTodos = todos.filter(function (todo) {
-    return !todo.completed;
-})
+const renderedTodos = function (todos, filters) {
+    const filteredTodos = todos.filter(function (todo) {
+        return todo.text.toLowerCase().includes(filters.filteredText.toLowerCase())
+    })
 
-todos.forEach(function (todo) {
-    const newParagraph = document.createElement('p');
-    newParagraph.textContent = todo.text;
-    document.querySelector('body').appendChild(newParagraph)
-})
+    document.querySelector('#todos').innerHTML = ''
 
+    const incompleteTodos = filteredTodos.filter(function (todo) {
+        return !todo.completed;
+    })
     
-const summary = document.createElement('h2');
-summary.textContent = `You have ${incompleteTodos.length} todos left`
-document.querySelector('body').appendChild(summary)
-
-// listen for new todo creation
-document.querySelector('#add-todo').addEventListener( 'click', function(e) {
-    e.target.textContent = 'I\'ve been clicked!'
-})
-
-document.querySelector('#add-todos').addEventListener('input', function(e) {
-    console.log(e.target.value)
-})
+    const summary = document.createElement('h2');
+    summary.textContent = `You have ${incompleteTodos.length} todos left`
+    document.querySelector('#todos').appendChild(summary)
     
+    filteredTodos.forEach(function (todo) {
+        const newParagraph = document.createElement('p');
+        newParagraph.textContent = todo.text;
+        document.querySelector('#todos').appendChild(newParagraph)
+    })
+}
+
+renderedTodos(todos, filters)
+
+document.querySelector('#search-text').addEventListener('input', function(e) {
+    filters.filteredText = e.target.value
+    renderedTodos(todos, filters)
+})
+// ****end filter todos functionaltiy end****
+document.addEventListener('#todo-text').addEventListener('submit', function(e) {
+    
+})
 
 
+
+
+// create a form with a single input for todo text done
+// setup a submit handler and cancel the default action
+// add a new item to the todos array with that text data (completed value of false) where the text was typed into the form field
+// rerender the application
+// clear the input field value
 
 
 

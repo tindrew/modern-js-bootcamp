@@ -8,17 +8,40 @@ const notes = [{
     title: 'Office modifications',
     body: 'Get a new seat'
 }]
+// setup search text to display 
+const filters = {
+    searchText: ''
+}
+
+// render the notes to the screen based on filters
+const renderNotes = function (notes, filters) {
+    const filteredNotes = notes.filter(function (note) {
+        return note.title.toLowerCase().includes(filters.searchText)
+    })
+
+    document.querySelector('#notes').innerHTML = ''
+
+    filteredNotes.forEach( function (note) {
+        const noteEl = document.createElement('p')
+        noteEl.textContent = note.title
+        document.querySelector('#notes').appendChild(noteEl)
+    })
+}
+
+renderNotes(notes, filters)
+
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
     console.log('create a new note')
 })
 
-document.querySelector('#remove-all').addEventListener('click', function() {
-    document.querySelectorAll(".note").forEach(function(note) {
-        note.remove();
-    })
+document.querySelector('#search-text').addEventListener('input', function(e) {
+    filters.searchText = e.target.value
+    renderNotes(notes, filters)
 })
 
-document.querySelector('#search-text').addEventListener('input', function(e) {
-    console.log(e.target.value)
+document.querySelector('#name-form').addEventListener('submit', function(e) {
+    e.preventDefault()
+    console.log(e.target.elements.firstName.value)
+    e.target.elements.firstName.value = ''
 })

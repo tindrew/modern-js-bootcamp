@@ -10,21 +10,23 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
-        <script>
-            console.log('ello world')
-        </script>
+       
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
             <h1>Notes App</h1>
-            <p class="note">web app designed by Andrew Martin</p>
-            <p class="note">some notes text</p>
+           
             <h2>Take notes and never forget.</h2>
-            <input id="search-text" type="text" placeholder="search todos"> 
+            <input id="search-text" type="text" placeholder="search notes"> 
+            <div id="notes"></div>
+            
             <button id="create-note">Create Note</button>
-            <button id="remove-all">Remove all notes</button>
+            <form id="name-form">
+                <input type="text" placeholder="first name" name="firstName">
+                <button>Submit</button>
+            </form>
         <script src="notes-app.js" async defer></script>
     </body>
 </html>
