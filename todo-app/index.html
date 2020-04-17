@@ -19,12 +19,17 @@
 
         <h1>Todos</h1>
         <h2>Get things done.</h2>
-        <form id="create-todo">
-            <input id="todo-text" type="text" placeholder="enter todo here">
-        </form>
+        
         <div id="todos"></div>
+        <form id="create-todo">
+            <input id="todo-text" type="text" placeholder="enter todo here" name="todoText">
+            <button id="submit-todo" type="submit">Submit</button>
+        </form>
         <input id="search-text" type="text" placeholder="filter todos">
-        <button type="submit">Submit</button>
+        <label>
+            <input id="hide-completed" type="checkbox">Hide Completed
+        </label>
+        
 
         <script src="todo-app.js" async defer></script>
     </body>

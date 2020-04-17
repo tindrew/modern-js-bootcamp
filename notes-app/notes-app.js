@@ -13,6 +13,11 @@ const filters = {
     searchText: ''
 }
 
+// create, read, update, delete = CRUD
+// localStorage.setItem ('location', 'Philadelphia') // Create
+console.log(localStorage.getItem('location')); // Read
+
+
 // render the notes to the screen based on filters
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
@@ -40,8 +45,7 @@ document.querySelector('#search-text').addEventListener('input', function(e) {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#name-form').addEventListener('submit', function(e) {
-    e.preventDefault()
-    console.log(e.target.elements.firstName.value)
-    e.target.elements.firstName.value = ''
+document.querySelector("#filter-by").addEventListener('change', function(e) {
+    console.log(e.target.value)
 })
+
