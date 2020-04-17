@@ -1,22 +1,16 @@
-const notes = [{
-    title: 'My next trip',
-    body: 'I would like to go to spain'
-}, {
-    title: 'Habits to work on',
-    body: 'Exercise, eating a bit better.'
-}, {
-    title: 'Office modifications',
-    body: 'Get a new seat'
-}]
+let notes = []
+
 // setup search text to display 
 const filters = {
     searchText: ''
 }
 
-// create, read, update, delete = CRUD
-// localStorage.setItem ('location', 'Philadelphia') // Create
-console.log(localStorage.getItem('location')); // Read
+// Check for existing saved data
+const notesJSON = localStorage.getItem('notes')
 
+if (notesJSON !== null) {
+    notes = JSON.parse(notesJSON)
+}
 
 // render the notes to the screen based on filters
 const renderNotes = function (notes, filters) {
@@ -28,7 +22,13 @@ const renderNotes = function (notes, filters) {
 
     filteredNotes.forEach( function (note) {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+            
+        if(note.title.length > 0) {
+            noteEl.textContent = note.title
+        } else {
+            noteEl.textContent = 'Unnamed Note'
+            console.log('is this firing')
+        }
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
@@ -36,16 +36,21 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters)
 
 
-document.querySelector('#create-note').addEventListener('click', function (e) {
-    console.log('create a new note')
-})
-
-document.querySelector('#search-text').addEventListener('input', function(e) {
-    filters.searchText = e.target.value
+document.querySelector('#create-note').addEventListener('click', function (event) {
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
     renderNotes(notes, filters)
 })
 
-document.querySelector("#filter-by").addEventListener('change', function(e) {
-    console.log(e.target.value)
+document.querySelector('#search-text').addEventListener('input', function(event) {
+    filters.searchText = event.target.value
+    renderNotes(notes, filters)
+})
+
+document.querySelector("#filter-by").addEventListener('change', function(event) {
+    console.log(event.target.value)
 })
 
