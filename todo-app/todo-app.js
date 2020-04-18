@@ -1,14 +1,12 @@
-// 1. Delete Dummy data
-// 2. Read and parse the data
-// 3. Stringify and write the data when new data is added
+
 
 
 let todos = []
 
 // check for existing saved data
 const todosJSON = localStorage.getItem('todos');
-
-if (todos.todosJSON !== null) {
+// may have to change this /////////////////////////////////////
+if (todos.todosJSON !== undefined) {
     todos = JSON.parse(todosJSON)
 }
 
