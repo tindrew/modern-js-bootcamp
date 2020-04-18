@@ -1,19 +1,16 @@
-const todos = [ {
-    text: 'buy food',
-    completed: true
-}, {
-    text: 'feed the cat',
-    completed: false
-}, {
-    text: 'some stuff',
-    completed: true
-}, {
-    text: 'walk the dog',
-    completed: false
-}, {
-    text: 'Exercise',
-    completed: true
-}]
+// 1. Delete Dummy data
+// 2. Read and parse the data
+// 3. Stringify and write the data when new data is added
+
+
+let todos = []
+
+// check for existing saved data
+const todosJSON = localStorage.getItem('todos');
+
+if (todos.todosJSON !== null) {
+    todos = JSON.parse(todosJSON)
+}
 
 // Filter todos functionality
 const filters = {
@@ -69,6 +66,7 @@ document.querySelector('#create-todo').addEventListener('submit', function(e) {
         text: e.target.elements.todoText.value,
         completed: false
     })
+    localStorage.setItem('todos', JSON.stringify(todos))
     renderedTodos(todos, filters)
     e.target.elements.todoText.value = ''
 })
@@ -98,7 +96,7 @@ document.querySelector('#hide-completed').addEventListener('change', function (e
 
 // create a form with a single input for todo text done
 // setup a submit handler and cancel the default action done
-// ad a new item to the todos array with that text data (completed value of false) where the text was typed into the form field
+// add a new item to the todos array with that text data (completed value of false) where the text was typed into the form field
 // rerender the application
 // clear the input field value
 
