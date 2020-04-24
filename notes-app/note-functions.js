@@ -16,21 +16,27 @@ const saveNotes = function (notes) {
 
 // generate the DOM structure for a note
 const generateNoteDOM = function (note) {
-    const noteEl = document.createElement('p')
-            
-        if(note.title.length > 0) {
-            noteEl.textContent = note.title
-        } else {
-            noteEl.textContent = 'Unnamed Note'
-            console.log('is this firing')
-        }
-        return noteEl
+    const noteEl = document.createElement('div')
+    const textEl = document.createElement('span')
+    const button = document.createElement('button')
+
+    //setup the remove note button
+    button.textContent = 'x';
+    noteEl.appendChild(button)
+    
+    if(note.title.length > 0) {
+        textEl.textContent = note.title
+    } else {
+        textEl.textContent = 'Unnamed Note'
+    }
+    noteEl.appendChild(textEl)
+    return noteEl   
 }
 
 // render application notes
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText)
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     })
 
     document.querySelector('#notes').innerHTML = ''
