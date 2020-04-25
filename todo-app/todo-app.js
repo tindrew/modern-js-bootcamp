@@ -20,6 +20,7 @@ document.querySelector('#search-text').addEventListener('input', function(e) {
 document.querySelector('#create-todo').addEventListener('submit', function(e) {
     e.preventDefault()
     todos.push ({
+        id: uuidv4(),
         text: e.target.elements.todoText.value,
         completed: false
     })

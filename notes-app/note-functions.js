@@ -1,3 +1,5 @@
+
+
 // read existing notes from local storage
 const getSavedNotes = function () {
     const notesJSON = localStorage.getItem('notes')
@@ -23,13 +25,15 @@ const generateNoteDOM = function (note) {
     //setup the remove note button
     button.textContent = 'x';
     noteEl.appendChild(button)
-    
+
+    // set up the note title text
     if(note.title.length > 0) {
         textEl.textContent = note.title
     } else {
         textEl.textContent = 'Unnamed Note'
     }
     noteEl.appendChild(textEl)
+    
     return noteEl   
 }
 
