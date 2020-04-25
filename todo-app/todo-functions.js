@@ -1,7 +1,8 @@
-
+// 1. Wire up button event
+// 2.Remove todo by ID
+3// Save and rerender the todos list
 
 // fetch existing todos from local storage
-//getSavedTodos
 const getSavedTodos = function () {
     const todosJSON = localStorage.getItem('todos');
 
@@ -12,13 +13,22 @@ const getSavedTodos = function () {
     }
 }
 // save todos to localStorage
-//saveTodos
 const saveTodos = function () {
     localStorage.setItem('todos', JSON.stringify(todos))
-
 }
+
+// Find todos by the index and delete them
+const deleteTodos = function (id) {
+    const todoIndex = todos.findIndex(function(todo) {
+        return todo.id === id
+    })
+
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1);
+    }
+}
+
 // Render application todos based on filters
-// renderTodos
 const renderedTodos = function (todos, filters) {
     // filters todos based on text entered in the box
     const filteredTodos = todos.filter(function (todo) {
@@ -27,10 +37,6 @@ const renderedTodos = function (todos, filters) {
         return searchTextMatch && hideCompletedMatch
     })
     
-    
-    // print todo text and todosCompleted
-
-
     const incompleteTodos = filteredTodos.filter(function (todo) {
         return !todo.completed;
     }) 
@@ -42,34 +48,8 @@ const renderedTodos = function (todos, filters) {
         document.querySelector('#todos').appendChild(generateTodoDOM(todo))
     })
 }
-
-
-
-// 1. Setup a root div
-// // 2. Setup and append a checkbox (set type attribute)
-
-// // someNode.setAttribute('type', 'checkbox)
-// // 3. Setup and append a span (set text)
-
-// // 4. Setup and append a button (set text)
-//  
-
-
-
-
-
-// get the DOM elements for an individual note
-// generateTodos
-// const generateTodoDOM = function (todo) {
-
-//     const newParagraph = document.createElement('p');
-//         newParagraph.textContent = todo.text;
-//         return newParagraph;
-// }
-
-
+// get the DOM elements for an individual todo
 const generateTodoDOM = function (todo) {
-    
     const todoEl = document.createElement('div');
     const checkbox = document.createElement('input');
     const todoText = document.createElement('span');
@@ -77,7 +57,8 @@ const generateTodoDOM = function (todo) {
 
     // Setup todo checkbox
     checkbox.setAttribute('type', 'checkbox')
-    todoEl.appendChild(checkbox)
+    checkbox.checked = todo.completed
+    
 
     //Setup the todo text
     todoText.textContent = todo.text
@@ -86,20 +67,18 @@ const generateTodoDOM = function (todo) {
     // Setup the remove button
     removeButton.textContent = 'delete'
     todoEl.appendChild(removeButton)
+    removeButton.addEventListener('click', function () {
+        deleteTodos(todo.id);
+        saveTodos();
+        renderedTodos(todos, filters);
+    })
 
   return todoEl
      
 }
 
 
-    
-
-
-
-
-
 // get the DOM elements for list summary
-// generateSummaryDOM
 const generateSummaryDOM = function (incompleteTodos) {
     // Creates a summary statement ******************
     const summary = document.createElement('h2');
